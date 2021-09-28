@@ -38,4 +38,11 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $exception)
+    {
+        return response([
+            'error' => $exception->getMessage(),
+        ], $exception->getCode() ? $exception->getCode() : 400);
+    }
 }
